@@ -20,3 +20,16 @@ function toggleuser(){
     userGender.innerHTML=user[curid].gender;
     userImage.src=user[curid].image;
 }
+function randomuser(){
+    fetch("https://randomuser.me/api")
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+        var userName = document.getElementById("user-name");
+        var userGender = document.getElementById("user-gender");
+        var userImage = document.getElementById("user-image");
+        userName.innerHTML=data.results[0].name.first + " " + data.results[0].name.last;
+        userGender.innerHTML=data.results[0].gender;
+        userImage.src=data.results[0].picture.large;
+    })
+    .catch(function(err){ console.log(err); }); 
+}
